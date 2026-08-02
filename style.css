@@ -33,21 +33,26 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, var(--mint), var(--blue));
-  color: #fff;
+  background: var(--bg);
+  color: var(--ink);
   padding: 3rem 1.25rem 2.5rem;
   text-align: center;
 }
 
+/* アプリアイコンをそのまま出す。アイコンは白地に黒なので、タイル側の白は
+   ダークモードでも固定にする（var(--bg) にすると顔が読めなくなる）。 */
 header .logo {
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
 }
 
 header h1 { margin: 0.75rem 0 0.25rem; font-size: 1.6rem; }
-header p { margin: 0; opacity: 0.92; font-size: 0.95rem; }
+header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
 main {
   max-width: 720px;
@@ -122,6 +127,6 @@ th { background: var(--card); white-space: nowrap; }
 
 @media (max-width: 480px) {
   header { padding: 2.25rem 1rem 2rem; }
-  header .logo { font-size: 2.4rem; }
+  header .logo { width: 80px; height: 80px; border-radius: 18px; }
   table, th, td { font-size: 0.9rem; }
 }
