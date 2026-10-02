@@ -1,135 +1,321 @@
-/* Kuchibue 公式サイト（サポート／プライバシーポリシー）
-   外部リソースに依存しない。配色はアプリのアイコンに合わせる。 */
+/* Kuchibue 公式サイト（サポート／プライバシーポリシー／利用規約／特商法表記）
+   外部リソースに依存しない。アイコンが白黒なので、紙と墨を基調にし、
+   アクセントは青1色だけ。見せ場はトップの口笛の波線のみ。 */
 
 :root {
-  --mint: #74e6c7;
-  --blue: #388ceb;
-  --ink: #1d2433;
-  --muted: #5b6472;
-  --line: #e3e8ef;
-  --bg: #ffffff;
-  --card: #f7f9fc;
+  --paper: #ffffff;
+  --wash: #f3f4f6;
+  --ink: #16181d;
+  --muted: #5d6470;
+  --line: #dfe2e8;
+  --accent: #2a4bff;
+  --accent-ink: #ffffff;
+  --measure: 40rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #eef2f8;
-    --muted: #a3adbb;
-    --line: #2a3242;
-    --bg: #151a23;
-    --card: #1d2431;
+    --paper: #101216;
+    --wash: #1a1d23;
+    --ink: #eceef2;
+    --muted: #9aa2af;
+    --line: #2b303a;
+    --accent: #8fa2ff;
+    --accent-ink: #101216;
   }
 }
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
 body {
   margin: 0;
-  background: var(--bg);
+  background: var(--paper);
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-  line-height: 1.8;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", "Yu Gothic", sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
   -webkit-text-size-adjust: 100%;
 }
 
-header {
-  background: var(--bg);
-  color: var(--ink);
-  padding: 3rem 1.25rem 2.5rem;
-  text-align: center;
+a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-/* アプリアイコンをそのまま出す。アイコンは白地に黒なので、タイル側の白は
-   ダークモードでも固定にする（var(--bg) にすると顔が読めなくなる）。 */
-header .logo {
-  display: block;
-  width: 96px;
-  height: 96px;
-  margin: 0 auto;
-  background: #fff;
-  border: 1px solid var(--line);
-  /* iOS のホーム画面と同じ角丸比率（辺の約 22.5%）。影が無いと白背景の
-     ライトモードで白タイルが背景に溶けて「アイコン感」が消える。 */
-  border-radius: 22px;
-  box-shadow: 0 6px 18px rgba(29, 36, 51, 0.16);
-}
+/* ---------- 上部バー（全ページ共通） ---------- */
 
-header h1 { margin: 0.75rem 0 0.25rem; font-size: 1.6rem; }
-header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-
-main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin: 2.5rem 0 0.75rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 2px solid var(--line);
-}
-
-h3 { font-size: 1rem; margin: 1.75rem 0 0.4rem; }
-
-p, li { color: var(--ink); }
-ul { padding-left: 1.25rem; }
-li { margin: 0.35rem 0; }
-
-.lead { color: var(--muted); }
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  margin: 1rem 0;
-}
-
-.card h3 { margin-top: 0.5rem; }
-
-.note {
-  border-left: 4px solid var(--blue);
-  padding-left: 1rem;
-  color: var(--muted);
-}
-
-a { color: var(--blue); }
-
-nav {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 1rem;
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
 
-nav a {
-  text-decoration: none;
-  font-size: 0.95rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--ink);
+.bar-inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-nav a.current { background: var(--blue); color: #fff; border-color: transparent; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  flex: none;
+}
 
-footer {
+/* アイコンは白地に黒。ダークモードでもタイルの白は固定にする。 */
+.brand img {
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.bar nav {
+  display: flex;
+  gap: 1.25rem;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.bar nav::-webkit-scrollbar { display: none; }
+
+.bar nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+}
+.bar nav a:hover { color: var(--ink); }
+.bar nav a[aria-current="page"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
+
+/* 画面が狭いときは、ブランドを上段・ナビを下段に分ける */
+@media (max-width: 640px) {
+  .bar { position: static; }
+  main { padding-top: 2.25rem; }
+  .bar-inner { flex-wrap: wrap; gap: 0.1rem 1rem; padding-bottom: 0; }
+  .bar nav { margin-left: 0; width: 100%; gap: 1.1rem; }
+}
+
+/* ---------- 本文の枠 ---------- */
+
+main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 5rem;
+}
+
+.page-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.7rem, 5.5vw, 2.3rem);
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.lead { color: var(--muted); margin: 0 0 1.5rem; }
+.page-title + .lead { margin-top: 0.75rem; }
+
+h2 {
+  margin: 4rem 0 1.25rem;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+h3 { margin: 2rem 0 0.4rem; font-size: 1rem; font-weight: 700; }
+
+p { margin: 0.8rem 0; }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--muted); }
+strong { font-weight: 700; }
+
+/* 要点・補足。囲みではなく左の縦線で示す。 */
+.note, .summary {
+  margin: 2rem 0;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 3px solid var(--ink);
+}
+.note { color: var(--muted); border-left-color: var(--line); }
+.summary h3 { margin-top: 0.5rem; }
+
+/* ---------- トップ：ヒーロー ---------- */
+
+.hero { padding: 1rem 0 1.5rem; }
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 8.5vw, 3.4rem);
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+/* 口笛の波線。一度だけ描かれて、最後に音符が現れる。 */
+.whistle { display: block; width: 100%; height: auto; margin: 1.25rem 0 1.75rem; overflow: visible; }
+.whistle path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.whistle .wave {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+.whistle .note-head { fill: var(--accent); stroke: none; opacity: 0; animation: appear 0.5s ease-out 2.4s forwards; }
+.whistle .note-stem { stroke: var(--accent); opacity: 0; animation: appear 0.5s ease-out 2.4s forwards; }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes appear { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .whistle .wave { animation: none; stroke-dashoffset: 0; }
+  .whistle .note-head, .whistle .note-stem { animation: none; opacity: 1; }
+  html { scroll-behavior: auto; }
+}
+
+.hero .lead { color: var(--ink); max-width: 36rem; }
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.jump li { margin: 0; }
+.jump a {
+  display: inline-block;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.jump a:hover { background: var(--ink); color: var(--paper); }
+
+/* ---------- 使い方：本当に順番のある手順なので番号を付ける ---------- */
+
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.6rem 1fr;
+  column-gap: 0.5rem;
+  margin: 0;
+  padding: 1.4rem 0;
   border-top: 1px solid var(--line);
+}
+.steps li:last-child { border-bottom: 1px solid var(--line); }
+.steps li::before {
+  content: counter(step);
+  grid-row: 1 / span 2;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.steps h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+.steps p { margin: 0; color: var(--muted); }
+
+/* ---------- よくある質問：開閉式 ---------- */
+
+details { border-top: 1px solid var(--line); }
+details:last-of-type { border-bottom: 1px solid var(--line); }
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.1rem 2rem 1.1rem 0;
+  font-weight: 700;
+  position: relative;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "";
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s;
+}
+details[open] > summary::after { transform: translateY(-30%) rotate(-135deg); }
+summary:hover { color: var(--accent); }
+summary:hover::after { border-color: var(--accent); }
+
+.answer { padding: 0 0 1.25rem; }
+.answer > :first-child { margin-top: 0; }
+
+/* ---------- お問い合わせ ---------- */
+
+.contact {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: var(--wash);
+  border-radius: 6px;
+}
+.contact p:first-child { margin-top: 0; }
+.contact p:last-child { margin-bottom: 0; }
+.mail { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.02em; word-break: break-all; }
+
+/* ---------- 表 ---------- */
+
+table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.95rem; }
+th, td { padding: 0.8rem 0.75rem 0.8rem 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+tr:first-child th, tr:first-child td { border-top: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 700; white-space: nowrap; }
+td { overflow-wrap: anywhere; }
+
+/* 2列の項目表（特商法）は、狭い画面で項目名を上に積む */
+@media (max-width: 560px) {
+  table.kv, table.kv tbody, table.kv tr, table.kv th, table.kv td { display: block; width: 100%; }
+  table.kv th { padding: 0.9rem 0 0; border-bottom: 0; font-size: 0.8rem; }
+  table.kv td { padding: 0.1rem 0 0.9rem; }
+  table.kv tr:first-child th { border-top: 1px solid var(--line); }
+  table.kv tr:first-child td { border-top: 0; }
+}
+
+/* ---------- フッター ---------- */
+
+footer { border-top: 1px solid var(--line); }
+.foot-inner {
+  max-width: 64rem;
+  margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  justify-content: space-between;
   color: var(--muted);
   font-size: 0.85rem;
 }
-
-table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
-th, td { border: 1px solid var(--line); padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
-th { background: var(--card); white-space: nowrap; }
-
-@media (max-width: 480px) {
-  header { padding: 2.25rem 1rem 2rem; }
-  header .logo { width: 80px; height: 80px; border-radius: 18px; }
-  table, th, td { font-size: 0.9rem; }
-}
+.foot-inner nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+.foot-inner a { color: var(--muted); }
+.foot-inner a:hover { color: var(--ink); }
