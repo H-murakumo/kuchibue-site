@@ -1,13 +1,13 @@
 # Kuchibue 公式サイト
 
-iOS アプリ **Kuchibue** のサポートページとプライバシーポリシー。
-App Store Connect の「サポート URL」「プライバシーポリシー URL」に登録する。
+iOS / Android アプリ **Kuchibue** のサポートページ・プライバシーポリシー・利用規約・特定商取引法表記。
+App Store Connect と Google Play Console の「サポート URL」「プライバシーポリシー URL」に登録する（同じサイトを両ストアで共用する）。
 
 GitHub Pages で公開する静的サイト（外部リソースへの依存なし・HTML と CSS のみ）。
 
 ## 構成
 
-| ファイル | 用途 | App Store Connect での登録先 |
+| ファイル | 用途 | ストアでの登録先 |
 |---|---|---|
 | `index.html` | 使い方・FAQ・問い合わせ先 | サポート URL |
 | `privacy.html` | プライバシーポリシー | プライバシーポリシー URL |
@@ -16,7 +16,7 @@ GitHub Pages で公開する静的サイト（外部リソースへの依存な�
 ## 記載内容
 
 - 問い合わせ先: support.223223@gmail.com（アプリ専用）
-- プライバシーポリシー最終更新日: 2026年7月27日（内容を変えたら必ず更新する）
+- プライバシーポリシー・利用規約の最終更新日: 2026年10月2日（内容を変えたら必ず更新する）
 
 ## 公開手順
 
@@ -42,4 +42,4 @@ gh api -X POST repos/:owner/kuchibue-site/pages -f 'source[branch]=main' -f 'sou
 
 アプリの機能を変えたら、このサイトの記述（特に FAQ とプライバシーポリシーの
 「端末内に保存されるもの」）も実態と合っているか確認すること。
-**プライバシーポリシーの記述と App Store Connect のプライバシー申告は必ず一致させる。**
+**プライバシーポリシーの記述と、App Store Connect のプライバシー申告・Google Play のデータセーフティ申告は必ず一致させる。**
